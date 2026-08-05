@@ -9,6 +9,8 @@ from pathlib import Path
 script_dir = Path(__file__).parent.parent
 fixtures_dir = script_dir / "fixtures" / "dates_md"
 
+def date_with_tz(s: str) -> datetime.datetime:
+    return datetime.datetime.fromisoformat(s).replace(tzinfo=datetime.timezone.utc)
 
 class DatesMdScraperTest(TestCase):
 
@@ -43,13 +45,12 @@ class DatesMdScraperTest(TestCase):
 
         scraper = DatesMdScraper(max_pages=1)
         responses.get(
-            "https://www.dates-md.de/search/event/veranstaltungen-magdeburg/?page=1",
+            "https://www.dates-md.de/search/event/veranstaltungen-magdeburg/?search_date=2026-07-28&search_date_end=2026-07-28&page=1",
             body=listing_html,
         )
         config = ScraperConfig(
-            scrape_until=datetime.datetime.fromisoformat("2026-07-28T17:00:00").replace(
-                        tzinfo=datetime.timezone.utc
-            ),
+            scraper_after=date_with_tz("2026-07-28T17:00:00"),
+            scrape_until=date_with_tz("2026-07-28T17:00:00"),
         )
         events = scraper.scrape_events(config)
         self.assertEqual(len(events), 20)
