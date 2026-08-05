@@ -15,7 +15,7 @@ from .api import app
 class Runner:
 
     BATCH_SIZE = timedelta(days=7)
-    LOOKAHEAD = timedelta(days=365)
+    LOOKAHEAD = timedelta(days=int(os.environ.get("LOOKAHEAD_DAYS", 365)))
 
     def __init__(self, db: Database) -> None:
         self.scrapers: list[ScraperInterface] = [
