@@ -2,6 +2,7 @@ from .scraper_interface import ScraperInterface, Event, ScraperConfig
 from .merge import merge_events
 from .scrapers.dates_md_scraper import DatesMdScraper
 from threading import Thread
+import os
 
 import schedule
 from datetime import datetime, timezone, timedelta
@@ -9,6 +10,7 @@ import logging as log
 import time
 from .db import Database
 from .api import app
+
 
 class Runner:
 
@@ -86,7 +88,13 @@ if __name__ == "__main__":
         datefmt="%Y-%m-%dT%H:%M:%S",
     )
 
-    db = Database("postgres", "pg_pwd", "localhost", "postgres", 5432)
+    db = Database(
+        host=os.environ.get("DB_HOST", "localhost"),
+        port=int(os.environ.get("DB_PORT", 5432)),
+        username=os.environ.get("DB_USER", "postgres"),
+        password=os.environ["DB_PASSWORD"],  # required
+        database=os.environ.get("DB_DATABASE", "postgres"),
+    )
     db.migrate()
 
     runner = Runner(db)
