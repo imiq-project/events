@@ -1,0 +1,6 @@
+beautifulsoup4==4.15
+responses>=0.26
+schedule>=1.0
+yoyo-migrations>=9.0
+psycopg2-binary>=2.9
+flask>=3.1
