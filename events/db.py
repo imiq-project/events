@@ -5,7 +5,8 @@ from yoyo import read_migrations
 from yoyo import get_backend
 from contextlib import contextmanager
 from .scraper_interface import Event
-
+import os
+import logging
 
 class Database:
 
@@ -33,7 +34,10 @@ class Database:
 
     def migrate(self):
         backend = get_backend(self.conninfo)
-        migrations = read_migrations("migrations")
+        script_dir = os.path.dirname(os.path.realpath(__file__))
+        migrations_dir = os.path.join(script_dir, "migrations")
+        logging.info(f"Applying migrations from {migrations_dir}")
+        migrations = read_migrations(migrations_dir)
         with backend.lock():
             backend.apply_migrations(backend.to_apply(migrations))
 
