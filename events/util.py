@@ -11,7 +11,7 @@ from dataclasses import dataclass, field
 from bs4 import BeautifulSoup
 from abc import ABC, abstractmethod
 
-from scraper_interface import Event
+from .scraper_interface import Event
 
 _RETRY_ATTEMPTS = 4
 _RETRY_BACKOFF = [10, 30, 60, 120]

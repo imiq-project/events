@@ -10,8 +10,8 @@ from urllib.parse import unquote
 from typing import List, Optional, Tuple
 from collections import defaultdict
 
-from scraper_interface import ScraperInterface, ScraperConfig, Event
-from util import fetch, normalize, download_image, dedup_exact_url
+from events.scraper_interface import ScraperInterface, ScraperConfig, Event
+from events.util import fetch, normalize, download_image, dedup_exact_url
 
 BASE_URL = "https://www.dates-md.de"
 LISTING_URL = f"{BASE_URL}/search/event/veranstaltungen-magdeburg/"

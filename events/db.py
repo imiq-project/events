@@ -1,10 +1,10 @@
 from datetime import datetime, timezone
 from typing import Optional, List
-from scraper_interface import Event
 from psycopg2 import pool
 from yoyo import read_migrations
 from yoyo import get_backend
 from contextlib import contextmanager
+from .scraper_interface import Event
 
 
 class Database:

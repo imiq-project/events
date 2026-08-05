@@ -1,7 +1,7 @@
 from __future__ import annotations
 import logging as log
 from typing import List
-from scraper_interface import Event
+from .scraper_interface import Event
 
 def _canonical(url: str) -> str:
     """Strip query-string noise so URLs from different sources can match."""

@@ -1,14 +1,14 @@
-from scraper_interface import ScraperInterface, Event, ScraperConfig
-from merge import merge_events
-from scrapers.dates_md_scraper import DatesMdScraper
+from .scraper_interface import ScraperInterface, Event, ScraperConfig
+from .merge import merge_events
+from .scrapers.dates_md_scraper import DatesMdScraper
 from threading import Thread
 
 import schedule
 from datetime import datetime, timezone, timedelta
 import logging as log
 import time
-from db import Database
-from api import app
+from .db import Database
+from .api import app
 
 class Runner:
 
