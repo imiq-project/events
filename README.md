@@ -22,6 +22,8 @@ And inside the container:
 python -m events.main
 ```
 
+Now access events at http://localhost:3000/api/events/index.html
+
 ### Without docker
 Create a virtual environment first
 
@@ -44,3 +46,5 @@ Finally, start the application using
 ```sh
 python -m events.main
 ```
+
+Now access events at http://localhost:3000/api/events/index.html
